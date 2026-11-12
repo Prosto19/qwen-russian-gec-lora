@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Model weights
+*.gguf
+*.safetensors
+*.bin
+*.pt
+*.pth
+
+# Secrets
+.env
+.env.*
+
+# Temporary files
+.DS_Store
+Thumbs.db

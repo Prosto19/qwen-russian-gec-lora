@@ -1,0 +1,6 @@
+{
+  "max_logit_difference": 6.119140625,
+  "mean_logit_difference": 0.9158074855804443,
+  "lora_B_count": 56,
+  "nonzero_lora_B_count": 56
+}
