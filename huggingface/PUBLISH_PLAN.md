@@ -1,13 +1,15 @@
-# Publication plan
+# Published model
 
-The Hugging Face account is being created. Do not invent a namespace or live URL.
+The GGUF and Model Card are published at:
+https://huggingface.co/Prosto19/qwen-russian-gec-lora
 
-Upload to a model repository named `qwen-russian-gec-lora`:
+Published files: qwen_gec_q4.gguf, README.md, model-manifest.json, LICENSE, NOTICE.
+Verified remote file size: 986,045,248 bytes.
+Verified remote SHA-256:
+eff44839a9e6a0e568afaaa6bfd33d019ecd61116769fe72eacbd3b6dc649b95
+This matches the local GGUF file. No fresh inference run is claimed.
 
-- The existing `qwen_gec_q4.gguf` from Downloads (986,045,248 bytes).
-- This directory's `README.md` as the model repository's root Model Card, after replacing its draft-status wording.
-- `model-manifest.json` and applicable upstream license / attribution files, once finalized.
-
-Do not upload dataset text, logs, notebook outputs, optimizer state or intermediate checkpoints. Keep GGUF out of GitHub. The final LoRA adapter is available in `soup_training_backup.zip`: `soup_qwen_gec_output/adapter_model.safetensors` (8,731,128 bytes) and `adapter_config.json`. Offer it as a separate adapter repository with the matching tokenizer files; do not confuse it with merged GGUF weights.
-
-After publication, verify the remote file size/hash and the model page, then replace the pending-publication text in the GitHub README with the verified URL. The Model Card already links back to the existing GitHub repository. No publication has been performed by preparing these files.
+The GitHub README links to the model and download; the Model Card links back to GitHub.
+Large weights remain on Hugging Face, not in this GitHub repository.
+The final LoRA adapter remains available in the original local training backup;
+it has not been published as part of this GGUF release.

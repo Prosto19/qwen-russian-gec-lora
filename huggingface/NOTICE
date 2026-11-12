@@ -1,0 +1,17 @@
+Qwen Russian GEC - derivative model
+
+Base: Qwen/Qwen2.5-1.5B-Instruct, Qwen Team / Alibaba Cloud.
+Recorded base revision: 989aa7980e4cf806f80c7fef2b1adb7bc71aa306
+Base source: https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct
+Upstream license is reproduced in LICENSE without modification.
+
+Modifications: Russian grammatical-error-correction LoRA fine-tuning through
+Soup CLI, adapter merge and Q4_K_M GGUF conversion. This is an independent
+experimental derivative, not an official Qwen or Soup release.
+
+Dataset attribution: alexanderpl/ru_gec_v1
+https://huggingface.co/datasets/alexanderpl/ru_gec_v1
+No training dataset files are included in this model repository.
+
+Project and experiment reports:
+https://github.com/Prosto19/qwen-russian-gec-lora

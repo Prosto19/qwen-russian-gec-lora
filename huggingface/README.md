@@ -14,7 +14,7 @@ tags:
 
 # Qwen Russian GEC — Q4_K_M GGUF
 
-**Experimental / DON'T SHIP.** A Qwen2.5-1.5B-Instruct derivative fine-tuned with LoRA for Russian grammatical error correction, merged and exported with Soup CLI. This card is prepared for publication; it is not evidence that weights have been uploaded.
+**Experimental / DON'T SHIP.** A Qwen2.5-1.5B-Instruct derivative fine-tuned with LoRA for Russian grammatical error correction, merged and exported with Soup CLI. The Q4_K_M GGUF artifact is provided for experimental local inference. Recorded evaluation is archival, not a fresh benchmark.
 
 [Code, notebook, results and reports](https://github.com/Prosto19/qwen-russian-gec-lora)
 
@@ -62,6 +62,6 @@ For learning, reproducibility research and inspection of model conversion failur
 
 ## Attribution and licensing
 
-Base model: Qwen Team, [Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct). Dataset: [alexanderpl/ru_gec_v1](https://huggingface.co/datasets/alexanderpl/ru_gec_v1). Their current cards identify Apache-2.0. Preserve applicable upstream license and attribution obligations when distributing derivative weights. A release license and upstream notices must be finalized before upload; this draft intentionally makes no blanket license grant.
+Base model: Qwen Team, [Qwen2.5-1.5B-Instruct](https://huggingface.co/Qwen/Qwen2.5-1.5B-Instruct). Dataset: [alexanderpl/ru_gec_v1](https://huggingface.co/datasets/alexanderpl/ru_gec_v1). Their current cards identify Apache-2.0. Preserve applicable upstream license and attribution obligations when distributing derivative weights. The included LICENSE reproduces the Apache-2.0 license from the recorded base-model revision. See NOTICE for attribution and modification details. No warranty is provided.
 
 Training/export: Soup CLI; GGUF runtime: llama.cpp. The technical reports describe the experimenter's work and AI assistance. No affiliation or endorsement is implied.
