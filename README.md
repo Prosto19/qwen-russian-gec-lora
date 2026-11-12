@@ -3,7 +3,7 @@
 **Qwen2.5-1.5B · LoRA · Soup CLI · GGUF**  
 Эксперимент по исправлению русского текста — от обучения до проверки экспортированной модели.
 
-[Notebook](notebooks/soup_qwen.ipynb) · [Конфигурация](configs/soup.yaml) · [English report](reports/Soup_AI_Engineer_Report_Final..pdf) · [Отчёт на русском](reports/Soup_AI_Engineer_Report_RU.pdf)
+[Hugging Face](https://huggingface.co/Prosto19/qwen-russian-gec-lora) · [Notebook](notebooks/soup_qwen.ipynb) · [Конфигурация](configs/soup.yaml) · [English report](reports/Soup_AI_Engineer_Report_Final..pdf) · [Отчёт на русском](reports/Soup_AI_Engineer_Report_RU.pdf)
 
 ## 🇷🇺 О проекте
 
@@ -13,7 +13,7 @@
 
 **Обучение:** Tesla T4 · 2 эпохи · 338 шагов · LoRA r=16, alpha=32.  
 **Файл Q4:** 986 045 248 байт — 940,4 МиБ (986,0 МБ).  
-**Hugging Face:** публикация готовится; подтверждённой ссылки пока нет. [Подготовленная Model Card](huggingface/README.md).
+**Hugging Face:** [Prosto19/qwen-russian-gec-lora](https://huggingface.co/Prosto19/qwen-russian-gec-lora). Репозиторий создан; файл GGUF ещё не загружен. [Подготовленная Model Card](huggingface/README.md).
 
 ## Результаты
 
@@ -43,7 +43,7 @@
 
 A Russian grammatical error correction case study using Qwen2.5-1.5B-Instruct, Soup CLI and LoRA. The pipeline covers training, merging, F16 / Q4_K_M GGUF export and an audit of recorded outputs.
 
-**Training:** Tesla T4, 2 epochs, 338 steps, LoRA r=16 / alpha=32. **Q4 file:** 940.4 MiB. Hugging Face publication is pending; the [model card draft](huggingface/README.md) documents the intended release.
+**Training:** Tesla T4, 2 epochs, 338 steps, LoRA r=16 / alpha=32. **Q4 file:** 940.4 MiB. [Hugging Face repository](https://huggingface.co/Prosto19/qwen-russian-gec-lora) is created; the GGUF upload is still pending; the [model card draft](huggingface/README.md) documents the intended release.
 
 The chart reports **0/20 → 6/20 → 6/20 → 6/20 → 3/20** exact matches for Base, LoRA, Merged, F16 and Q4. **DON'T SHIP:** twenty examples do not establish general accuracy. Prompt wording and inference engines differ across stages; valid alternative corrections can fail exact match. No fresh inference run is claimed.
 
