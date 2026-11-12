@@ -1,0 +1,9 @@
+{
+  "filename": "qwen_gec_q4.gguf",
+  "bytes": 986045248,
+  "sha256": "eff44839a9e6a0e568afaaa6bfd33d019ecd61116769fe72eacbd3b6dc649b95",
+  "format": "GGUF v3",
+  "quantization": "Q4_K_M",
+  "publication_status": "pending",
+  "live_inference_retested": false
+}

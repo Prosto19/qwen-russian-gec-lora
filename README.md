@@ -1,75 +1,50 @@
 # Qwen Russian Grammar Correction
 
-**AI/ML Project | Qwen2.5-1.5B · LoRA · Soup CLI**
+**Qwen2.5-1.5B · LoRA · Soup CLI · GGUF**  
+Эксперимент по исправлению русского текста — от обучения до проверки экспортированной модели.
+
+[Notebook](notebooks/soup_qwen.ipynb) · [Конфигурация](configs/soup.yaml) · [English report](reports/Soup_AI_Engineer_Report_Final..pdf) · [Отчёт на русском](reports/Soup_AI_Engineer_Report_RU.pdf)
 
 ## 🇷🇺 О проекте
 
-Экспериментальный AI/ML-проект по дообучению Qwen2.5-1.5B-Instruct для исправления грамматических и орфографических ошибок в русском языке.
+Дообучение `Qwen/Qwen2.5-1.5B-Instruct` на русском GEC-датасете через Soup: LoRA, объединение весов, экспорт F16 / Q4_K_M GGUF и сравнение сохранённых ответов.
 
-Проект включает LoRA-дообучение, объединение весов, квантование GGUF и сравнительное тестирование.
+![Dataset → Qwen → LoRA → Merge → GGUF → Evaluation](assets/pipeline.png)
 
-**Технологии:** Python · PyTorch · Transformers · PEFT · LoRA · Soup CLI · llama.cpp
+**Обучение:** Tesla T4 · 2 эпохи · 338 шагов · LoRA r=16, alpha=32.  
+**Файл Q4:** 986 045 248 байт — 940,4 МиБ (986,0 МБ).  
+**Hugging Face:** публикация готовится; подтверждённой ссылки пока нет. [Подготовленная Model Card](huggingface/README.md).
 
-## Результаты эксперимента
+## Результаты
 
-```mermaid
-xychart-beta
-    title "Exact Match Accuracy (%)"
-    x-axis ["Base", "LoRA", "Merged", "F16", "Q4"]
-    y-axis "Accuracy (%)" 0 --> 40
-    bar [0, 30, 30, 30, 15]
-```
+![Exact match: Base 0/20, LoRA 6/20, Merged 6/20, F16 6/20, Q4 3/20](assets/results.png)
 
-*Результаты предварительные: тестирование проводилось на 20 примерах.*
+| Base | LoRA | Merged FP16 | F16 GGUF | Q4 GGUF |
+|---:|---:|---:|---:|---:|
+| 0/20 | 6/20 | 6/20 | 6/20 | 3/20 |
 
-**Итоговое решение: DON'T SHIP**
+**DON'T SHIP:** это экспериментальная модель, не готовый корректор. Exact Match — совпадение с эталоном после `.strip()`, а не оценка смысла. Всего 20 примеров; формулировки запросов и движки между этапами различаются. Независимый повторный запуск модели здесь не заявляется.
 
-Дообучение улучшило результаты, однако после 4-битного квантования количество точных совпадений снизилось. Модель пока не готова к использованию в реальных продуктах.
+### Реальные примеры
 
-## Model
+| ID | Input | LoRA | Q4 GGUF |
+|---|---|---|---|
+| 35 | Передача данных с микроконтроллера на сервер может быть реализована двумя способами:. | Передача данных с микроконтроллера на сервер может быть реализована двумя способами: | Передача данных с микроконтроллера на сервер может быть реализована двумя способами: |
+| 139 | Истцы требуют измени некоторые правила футбола. | Истцы требуют изменить некоторые правила футбола. | Истцы требуют изменения некоторых правил футбола. |
+| 129 | Местонахождение картины так и остаться неизвестным. | Местонахождение картины так и осталось неизвестным. | Местонахождение картины так и остается неизвестным. |
 
-- **Base:** Qwen2.5-1.5B-Instruct
-- **Training:** 338 шагов, 2 эпохи
-- **Quantization:** Q4_K_M (GGUF)
-- **Model size:** ~940 MB
+Выбраны один успех Q4 и два несовпадения Q4 с эталоном при точном ответе LoRA; это иллюстрации, а не случайная выборка. Источник: [сохранённые результаты](results/q4_gec_results.json), `test_index` указан слева.
 
-## Project Files
-
-- [Training Notebook](notebooks/soup_qwen.ipynb)
-- [Verification Script](scripts/verify_soup.py)
-- [Soup Configuration](configs/soup.yaml)
-- [English Technical Report](reports/Soup_AI_Engineer_Report_Final.pdf)
-- [Russian Technical Report](reports/Soup_AI_Engineer_Report_RU.pdf)
-
-**Подробнее о проекте:** полное описание обучения, анализ использования видеопамяти, проверка LoRA, обнаруженные ошибки и обоснование итогового решения представлены в технических отчётах выше. В репозитории также доступны код, конфигурация, логи и результаты экспериментов.
+Проверить метрики без GPU и дополнительных библиотек: `python scripts/check_results.py`. Подробности обучения, памяти и ограничений — в PDF-отчётах выше.
 
 ---
 
-# 🇬🇧 English Version
+## 🇬🇧 English
 
-**AI/ML Project | Qwen2.5-1.5B · LoRA · Soup CLI**
+A Russian grammatical error correction case study using Qwen2.5-1.5B-Instruct, Soup CLI and LoRA. The pipeline covers training, merging, F16 / Q4_K_M GGUF export and an audit of recorded outputs.
 
-An experimental AI/ML project focused on fine-tuning Qwen2.5-1.5B-Instruct for Russian grammar and spelling correction.
+**Training:** Tesla T4, 2 epochs, 338 steps, LoRA r=16 / alpha=32. **Q4 file:** 940.4 MiB. Hugging Face publication is pending; the [model card draft](huggingface/README.md) documents the intended release.
 
-The project covers LoRA fine-tuning, model merging, GGUF quantization, and evaluation.
+The chart reports **0/20 → 6/20 → 6/20 → 6/20 → 3/20** exact matches for Base, LoRA, Merged, F16 and Q4. **DON'T SHIP:** twenty examples do not establish general accuracy. Prompt wording and inference engines differ across stages; valid alternative corrections can fail exact match. No fresh inference run is claimed.
 
-**Tech Stack:** Python · PyTorch · Transformers · PEFT · LoRA · Soup CLI · llama.cpp
-
-## Results
-
-The chart above shows exact-match accuracy across five model configurations.
-
-*Evaluation was conducted on 20 examples. Results are preliminary.*
-
-**Final verdict: DON'T SHIP**
-
-Fine-tuning improved results on the selected examples, but 4-bit quantization reduced the exact-match score. The model is not ready for production deployment.
-
-## Model
-
-- **Base:** Qwen2.5-1.5B-Instruct
-- **Training:** 338 steps, 2 epochs
-- **Quantization:** Q4_K_M (GGUF)
-- **Model size:** ~940 MB
-
-**More information:** Detailed training results, GPU memory analysis, LoRA verification, encountered issues, and the final decision are documented in the technical reports linked in **Project Files** above. The repository also contains the experiment notebook, configuration, logs, and evaluation results.
+The examples above show one Q4 exact match and two Q4 mismatches where LoRA matched the reference. Run `python scripts/check_results.py` for a dependency-free archival check. See the [English technical report](reports/Soup_AI_Engineer_Report_Final..pdf) for the full experiment and limitations.
